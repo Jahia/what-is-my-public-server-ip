@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                      http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>jahia-modules</artifactId>
+        <groupId>org.jahia.modules</groupId>
+        <version>7.3.1.0</version>
+    </parent>
+    <groupId>org.jahia.modules</groupId>
+    <artifactId>what-is-my-public-server-ip</artifactId>
+    <name>What is my public server IP</name>
+    <version>1.0.0-SNAPSHOT</version>    
+    <packaging>bundle</packaging>
+    <description>This is a custom module to display the public IP used by the server to access Internet</description>
+
+    <scm>
+        <connection>scm:git:git@github.com:Jahia/what-is-my-public-server-ip.git</connection>
+        <developerConnection>scm:git:git@github.com:Jahia/what-is-my-public-server-ip.git</developerConnection>
+        <url>https://github.com/Jahia/what-is-my-public-server-ip</url>
+    </scm>
+    
+    <properties>
+        <jahia-depends>default,serverSettings</jahia-depends>
+        <jahia-module-type>system</jahia-module-type>
+        <jahia-deploy-on-site>system</jahia-deploy-on-site>
+    </properties>
+
+    <repositories>
+        <repository>
+            <id>jahia-public</id>
+            <name>Jahia Public Repository</name>
+            <url>https://devtools.jahia.com/nexus/content/groups/public</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <extensions>true</extensions>
+                <configuration>
+                    <instructions>
+                        <Jahia-Depends>default</Jahia-Depends>
+                    </instructions>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<content xmlns:j="http://www.jahia.org/jahia/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0">
+    <modules jcr:primaryType="jnt:modules">
+        <what-is-my-public-server-ip j:dependencies="default siteSettings tabularList"
+                                     j:installedModules="what-is-my-public-server-ip"
+                                     j:modulePriority="0"
+                                     j:moduleType="module"
+                                     j:title="What is my public servier IP"
+                                     jcr:primaryType="jnt:module">                
+            <portlets jcr:primaryType="jnt:portletFolder"/>
+            <files jcr:primaryType="jnt:folder"/>
+            <contents jcr:primaryType="jnt:contentFolder"/>
+            <templates j:rootTemplatePath="/" jcr:primaryType="jnt:templatesFolder">
+                <files jcr:primaryType="jnt:folder">
+                    <serveradmin jcr:primaryType="jnt:folder">
+                        <whatIsMyPublicServerIp.png j:height="16"
+                                                    j:width="16"
+                                                    jcr:mixinTypes="jmix:image"
+                                                    jcr:primaryType="jnt:file">
+                            <jcr:content jcr:mimeType="image/png" jcr:primaryType="jnt:resource"/>
+                        </whatIsMyPublicServerIp.png>
+                    </serveradmin>
+                </files>
+                <contents jcr:primaryType="jnt:contentFolder"/>
+                <server-settings-base j:view="serverSettings"
+                                      jcr:mixinTypes="jmix:useUILocale"
+                                      jcr:primaryType="jnt:template">
+                    <whatIsMyPublicServerIp j:applyOn="jnt:globalSettings"
+                                            j:defaultTemplate="false"
+                                            j:hiddenTemplate="false"
+                                            j:icon="/modules/what-is-my-public-server-ip/templates/files/serveradmin/whatIsMyPublicServerIp.png"
+                                            j:requiredPermissionNames="administrationAccess"
+                                            j:titleKey="whatIsMyPublicServerIp.title"
+                                            jcr:mixinTypes="jmix:rbTitle"
+                                            jcr:primaryType="jnt:contentTemplate">
+                        <pagecontent jcr:primaryType="jnt:contentList">
+                            <about-jahia jcr:primaryType="jnt:whatIsMyPublicServerIp"/>
+                        </pagecontent>
+                    </whatIsMyPublicServerIp>
+                </server-settings-base>
+            </templates>
+        </what-is-my-public-server-ip>
+    </modules>
+</content>
