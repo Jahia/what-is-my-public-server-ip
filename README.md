@@ -10,5 +10,5 @@ The purpose of this module is to allow the retrieval of the public IP used by a 
 
 # Use
 
-- Go to "Administration -> Server settings -> What is my public server IP"
+- Go to "Administration -> Server settings -> Configuration -> What is my public server IP"
 
