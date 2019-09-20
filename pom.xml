@@ -8,7 +8,7 @@
   </parent>
   <groupId>org.jahia.modules</groupId>
   <artifactId>what-is-my-public-server-ip</artifactId>
-  <version>1.0.1-SNAPSHOT</version>
+  <version>1.0.1</version>
   <packaging>bundle</packaging>
   <name>What is my public server IP</name>
   <description>This is a custom module to display the public IP used by the server to access Internet</description>
@@ -16,7 +16,7 @@
     <connection>scm:git:git@github.com:Jahia/what-is-my-public-server-ip.git</connection>
     <developerConnection>scm:git:git@github.com:Jahia/what-is-my-public-server-ip.git</developerConnection>
     <url>https://github.com/Jahia/what-is-my-public-server-ip</url>
-    <tag>HEAD</tag>
+    <tag>1_0_1</tag>
   </scm>
   <properties>
     <jahia-deploy-on-site>system</jahia-deploy-on-site>
