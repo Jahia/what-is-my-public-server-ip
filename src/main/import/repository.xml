@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <content xmlns:j="http://www.jahia.org/jahia/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0">
     <modules jcr:primaryType="jnt:modules">
-        <what-is-my-public-server-ip j:dependencies="default siteSettings tabularList"
+        <what-is-my-public-server-ip j:dependencies="default serverSettings"
                                      j:installedModules="what-is-my-public-server-ip"
                                      j:modulePriority="0"
                                      j:moduleType="module"
@@ -25,18 +25,24 @@
                 <server-settings-base j:view="serverSettings"
                                       jcr:mixinTypes="jmix:useUILocale"
                                       jcr:primaryType="jnt:template">
-                    <whatIsMyPublicServerIp j:applyOn="jnt:globalSettings"
-                                            j:defaultTemplate="false"
-                                            j:hiddenTemplate="false"
-                                            j:icon="/modules/what-is-my-public-server-ip/templates/files/serveradmin/whatIsMyPublicServerIp.png"
-                                            j:requiredPermissionNames="administrationAccess"
-                                            j:titleKey="whatIsMyPublicServerIp.title"
-                                            jcr:mixinTypes="jmix:rbTitle"
-                                            jcr:primaryType="jnt:contentTemplate">
-                        <pagecontent jcr:primaryType="jnt:contentList">
-                            <about-jahia jcr:primaryType="jnt:whatIsMyPublicServerIp"/>
-                        </pagecontent>
-                    </whatIsMyPublicServerIp>
+                    <configurations j:hiddenTemplate="false"
+                                    j:icon="/modules/serverSettings/templates/files/serveradmin/configurations/configurations.png"
+                                    j:titleKey="serverSettings.configurations"
+                                    jcr:mixinTypes="jmix:rbTitle"
+                                    jcr:primaryType="jnt:template">
+                        <whatIsMyPublicServerIp j:applyOn="jnt:globalSettings"
+                                                j:defaultTemplate="false"
+                                                j:hiddenTemplate="false"
+                                                j:icon="/modules/what-is-my-public-server-ip/templates/files/serveradmin/whatIsMyPublicServerIp.png"
+                                                j:requiredPermissionNames="administrationAccess"
+                                                j:titleKey="whatIsMyPublicServerIp.title"
+                                                jcr:mixinTypes="jmix:rbTitle"
+                                                jcr:primaryType="jnt:contentTemplate">
+                            <pagecontent jcr:primaryType="jnt:contentList">
+                                <about-jahia jcr:primaryType="jnt:whatIsMyPublicServerIp"/>
+                            </pagecontent>
+                        </whatIsMyPublicServerIp>
+                    </configurations>
                 </server-settings-base>
             </templates>
         </what-is-my-public-server-ip>
