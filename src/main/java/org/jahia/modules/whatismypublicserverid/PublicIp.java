@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.io.Serializable;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,18 +17,16 @@ import org.slf4j.LoggerFactory;
  */
 public final class PublicIp implements Serializable {
 
+    private static final long serialVersionUID = 1;
     private static final Logger LOGGER = LoggerFactory.getLogger(PublicIp.class);
     private static final String CHECK_IP_URL = "http://checkip.amazonaws.com";
-
-    public PublicIp() {
-    }
 
     public String get() {
         String ip = "unknown";
         try {
             final URL whatismyip = new URL(CHECK_IP_URL);
             try ( InputStream inputStream = whatismyip.openStream()) {
-                try ( InputStreamReader inputStreamReader = new InputStreamReader(inputStream)) {
+                try ( InputStreamReader inputStreamReader = new InputStreamReader(inputStream, StandardCharsets.UTF_8)) {
                     try ( BufferedReader bufferedReader = new BufferedReader(inputStreamReader)) {
                         ip = bufferedReader.readLine();
                     }
