@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>org.jahia.modules</groupId>
@@ -9,7 +8,7 @@
   </parent>
   <groupId>org.jahia.modules</groupId>
   <artifactId>what-is-my-public-server-ip</artifactId>
-  <version>1.0.0-SNAPSHOT</version>
+  <version>1.0.0</version>
   <packaging>bundle</packaging>
   <name>What is my public server IP</name>
   <description>This is a custom module to display the public IP used by the server to access Internet</description>
@@ -17,6 +16,7 @@
     <connection>scm:git:git@github.com:Jahia/what-is-my-public-server-ip.git</connection>
     <developerConnection>scm:git:git@github.com:Jahia/what-is-my-public-server-ip.git</developerConnection>
     <url>https://github.com/Jahia/what-is-my-public-server-ip</url>
+    <tag>1_0_0</tag>
   </scm>
   <properties>
     <jahia-deploy-on-site>system</jahia-deploy-on-site>
