@@ -5,7 +5,7 @@
                                      j:installedModules="what-is-my-public-server-ip"
                                      j:modulePriority="0"
                                      j:moduleType="module"
-                                     j:title="What is my public servier IP"
+                                     j:title="What is my public server IP"
                                      jcr:primaryType="jnt:module">                
             <portlets jcr:primaryType="jnt:portletFolder"/>
             <files jcr:primaryType="jnt:folder"/>
