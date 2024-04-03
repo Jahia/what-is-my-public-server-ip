@@ -6,7 +6,7 @@
                                      j:modulePriority="0"
                                      j:moduleType="module"
                                      j:title="What is my public server IP"
-                                     jcr:primaryType="jnt:module">                
+                                     jcr:primaryType="jnt:module">
             <portlets jcr:primaryType="jnt:portletFolder"/>
             <files jcr:primaryType="jnt:folder"/>
             <contents jcr:primaryType="jnt:contentFolder"/>
@@ -22,7 +22,7 @@
                     </serveradmin>
                 </files>
                 <contents jcr:primaryType="jnt:contentFolder"/>
-                <server-settings-base j:view="serverSettings"
+                <server-settings-base j:view="settingsBootstrap3GoogleMaterialStyle"
                                       jcr:mixinTypes="jmix:useUILocale"
                                       jcr:primaryType="jnt:template">
                     <configurations j:hiddenTemplate="false"
