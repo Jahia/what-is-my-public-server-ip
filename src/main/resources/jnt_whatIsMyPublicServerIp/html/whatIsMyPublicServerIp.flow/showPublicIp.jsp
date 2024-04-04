@@ -1,7 +1,3 @@
-<%@ page import="org.jahia.bin.Jahia" %>
-<%@ page import="java.net.URL" %>
-<%@ page import="java.io.BufferedReader" %>
-<%@ page import="java.io.InputStreamReader" %>
 <%@ page language="java" contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="template" uri="http://www.jahia.org/tags/templateLib" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -17,5 +13,15 @@
 <%--@elvariable id="currentResource" type="org.jahia.services.render.Resource"--%>
 <%--@elvariable id="url" type="org.jahia.services.render.URLGenerator"--%>
 
-<h2>Public IP used by the server to access Internet</h2>
-<h3>${ip}</h3>
+<div class="row">
+    <div class="col-md-offset-3 col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Public IP used by the server to access Internet</h3>
+            </div>
+            <div class="panel-body">
+                <p class="text-uppercase">${ip}</p>
+            </div>
+        </div>
+    </div>
+</div>

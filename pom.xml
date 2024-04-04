@@ -6,7 +6,6 @@
         <artifactId>jahia-modules</artifactId>
         <version>8.0.1.0</version>
     </parent>
-    <groupId>org.jahia.modules</groupId>
     <artifactId>what-is-my-public-server-ip</artifactId>
     <version>2.0.1-SNAPSHOT</version>
     <packaging>bundle</packaging>
@@ -19,11 +18,12 @@
         <tag>HEAD</tag>
     </scm>
     <properties>
-        <jahia-depends>default,siteSettings,tabularList,serverSettings</jahia-depends>
+        <jahia-depends>serverSettings</jahia-depends>
         <jahia-deploy-on-site>system</jahia-deploy-on-site>
         <jahia-module-signature>MCwCFB4DgfM4LzAFBcV8fvJ7zVMvsntNAhR4vrtbUX5O6NWWZqcyAIQIPeKgRQ==</jahia-module-signature>
         <jahia-module-type>system</jahia-module-type>
         <require-capability>osgi.extender;filter:="(osgi.extender=org.jahia.bundles.blueprint.extender.config)"</require-capability>
+        <jahia.plugin.version>6.9</jahia.plugin.version>
     </properties>
     <repositories>
         <repository>
