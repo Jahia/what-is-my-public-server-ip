@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Serializable;
 import java.net.MalformedURLException;
+import java.net.URI;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import org.slf4j.Logger;
@@ -24,19 +25,21 @@ public final class PublicIp implements Serializable {
     public String get() {
         String ip = "unknown";
         try {
-            final URL whatismyip = new URL(CHECK_IP_URL);
-            try ( InputStream inputStream = whatismyip.openStream()) {
-                try ( InputStreamReader inputStreamReader = new InputStreamReader(inputStream, StandardCharsets.UTF_8)) {
-                    try ( BufferedReader bufferedReader = new BufferedReader(inputStreamReader)) {
-                        ip = bufferedReader.readLine();
-                    }
-                }
-            } catch (IOException ex) {
-                LOGGER.error("Impossible to open URL {}", CHECK_IP_URL, ex);
-            }
+            ip = readIpFromUrl(URI.create(CHECK_IP_URL).toURL());
         } catch (MalformedURLException ex) {
             LOGGER.error("Malformed URL {}", CHECK_IP_URL, ex);
         }
         return ip;
+    }
+
+    private String readIpFromUrl(URL url) {
+        try (InputStream inputStream = url.openStream();
+             InputStreamReader inputStreamReader = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
+             BufferedReader bufferedReader = new BufferedReader(inputStreamReader)) {
+            return bufferedReader.readLine();
+        } catch (IOException ex) {
+            LOGGER.error("Impossible to open URL {}", CHECK_IP_URL, ex);
+            return "unknown";
+        }
     }
 }
