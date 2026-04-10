@@ -1,3 +1,8 @@
 {
-  "label" : "What is my public server IP"
+  "label": "What is my public server IP",
+  "whatIsMyPublicServerIp": {
+    "title": "Public IP used by the server to access Internet",
+    "loading": "Loading...",
+    "error": "Failed to retrieve the public IP"
+  }
 }

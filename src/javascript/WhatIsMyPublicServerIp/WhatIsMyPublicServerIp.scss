@@ -1,0 +1,65 @@
+.container {
+  font-family: 'Nunito Sans', sans-serif;
+  color: var(--color-dark, #131c21);
+  max-width: 560px;
+  padding: var(--spacing-large, 24px);
+}
+
+.header {
+  margin-bottom: var(--spacing-large, 24px);
+  padding-bottom: var(--spacing-medium, 16px);
+  border-bottom: 1px solid var(--color-gray_light, #dadada);
+
+  h2 {
+    margin: 0;
+    padding: 0;
+    font-size: 25px;
+    line-height: 85px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    user-select: none;
+  }
+}
+
+.card {
+  background: var(--color-white, #fff);
+  border-radius: var(--radius, 4px);
+  border: 1px solid var(--color-gray_light, #dadada);
+  overflow: hidden;
+}
+
+.cardHeader {
+  background: linear-gradient(135deg, var(--color-accent, #00a0e3) 0%, var(--color-accent_dark_contrast, #004781) 100%);
+  padding: var(--spacing-medium, 16px) var(--spacing-large, 24px);
+}
+
+.cardBody {
+  padding: var(--spacing-big, 40px) var(--spacing-large, 24px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-small, 8px);
+}
+
+.ipLabel {
+  color: var(--color-gray, #7a7f88);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.ipValue {
+  color: var(--color-dark, #131c21);
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  font-family: monospace;
+}
+
+.loaderWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--spacing-big, 40px);
+}

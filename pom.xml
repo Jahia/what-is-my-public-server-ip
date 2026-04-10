@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.jahia.modules</groupId>
         <artifactId>jahia-modules</artifactId>
-        <version>8.0.1.0</version>
+        <version>8.2.2.1</version>
     </parent>
     <artifactId>what-is-my-public-server-ip</artifactId>
     <version>2.0.1-SNAPSHOT</version>
@@ -15,16 +17,44 @@
         <connection>scm:git:git@github.com:Jahia/what-is-my-public-server-ip.git</connection>
         <developerConnection>scm:git:git@github.com:Jahia/what-is-my-public-server-ip.git</developerConnection>
         <url>https://github.com/Jahia/what-is-my-public-server-ip</url>
-        <tag>HEAD</tag>
     </scm>
     <properties>
-        <jahia-depends>serverSettings</jahia-depends>
-        <jahia-deploy-on-site>system</jahia-deploy-on-site>
-        <jahia-module-signature>MCwCFB4DgfM4LzAFBcV8fvJ7zVMvsntNAhR4vrtbUX5O6NWWZqcyAIQIPeKgRQ==</jahia-module-signature>
+        <jahia-module-signature>MCwCFB4DgfM4LzAFBcV8fvJ7zVMvsntNAhR4vrtbUX5O6NWWZqcyAIQIPeKgRQ==
+        </jahia-module-signature>
+        <yarn.arguments>build:production</yarn.arguments>
         <jahia-module-type>system</jahia-module-type>
-        <require-capability>osgi.extender;filter:="(osgi.extender=org.jahia.bundles.blueprint.extender.config)"</require-capability>
+        <require-capability>osgi.extender;filter:="(osgi.extender=org.jahia.bundles.blueprint.extender.config)"
+        </require-capability>
         <jahia.plugin.version>6.9</jahia.plugin.version>
+        <jahia-deploy-on-site>system</jahia-deploy-on-site>
+        <jahia-depends>serverSettings,graphql-dxm-provider,default</jahia-depends>
     </properties>
+    <dependencies>
+        <dependency>
+            <groupId>com.graphql-java</groupId>
+            <artifactId>graphql-java</artifactId>
+            <version>${graphql-java.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.graphql-java-kickstart</groupId>
+            <artifactId>graphql-java-servlet</artifactId>
+            <version>${graphql-java-servlet.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.github.graphql-java</groupId>
+            <artifactId>graphql-java-annotations</artifactId>
+            <version>${graphql-java-annotations.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jahia.modules</groupId>
+            <artifactId>graphql-dxm-provider</artifactId>
+            <version>3.4.0</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
     <repositories>
         <repository>
             <releases>
@@ -42,11 +72,56 @@
     <build>
         <plugins>
             <plugin>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.5.3</version>
+                <configuration>
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
+                    <tagNameFormat>@{project.version}</tagNameFormat>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.github.eirslett</groupId>
+                <artifactId>frontend-maven-plugin</artifactId>
+                <version>1.15.0</version>
+                <executions>
+                    <execution>
+                        <id>npm install node and yarn</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>install-node-and-yarn</goal>
+                        </goals>
+                        <configuration>
+                            <nodeVersion>v22.6.0</nodeVersion>
+                            <yarnVersion>v1.22.21</yarnVersion>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>yarn install</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>yarn</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>yarn post-install</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>yarn</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>${yarn.arguments}</arguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <groupId>org.apache.felix</groupId>
                 <artifactId>maven-bundle-plugin</artifactId>
                 <extensions>true</extensions>
                 <configuration>
-                    <instructions />
+                    <instructions>
+                        <_dsannotations>org.jahia.modules.whatismypublicserverid.*</_dsannotations>
+                    </instructions>
                 </configuration>
             </plugin>
         </plugins>
