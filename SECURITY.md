@@ -2,4 +2,4 @@
 
 ## Reporting a Vulnerability
 
-Security information can be found [there](https://academy.jahia.com/.well-known/security.txt).
+Security information can be found in our [security.txt file](https://academy.jahia.com/.well-known/security.txt).
