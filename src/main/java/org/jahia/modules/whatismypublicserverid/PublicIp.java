@@ -5,9 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Serializable;
-import java.net.MalformedURLException;
 import java.net.URI;
-import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,22 +21,12 @@ public final class PublicIp implements Serializable {
     private static final String CHECK_IP_URL = "http://checkip.amazonaws.com";
 
     public String get() {
-        String ip = "unknown";
-        try {
-            ip = readIpFromUrl(URI.create(CHECK_IP_URL).toURL());
-        } catch (MalformedURLException ex) {
-            LOGGER.error("Malformed URL {}", CHECK_IP_URL, ex);
-        }
-        return ip;
-    }
-
-    private String readIpFromUrl(URL url) {
-        try (InputStream inputStream = url.openStream();
+        try (InputStream inputStream = URI.create(CHECK_IP_URL).toURL().openStream();
              InputStreamReader inputStreamReader = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
              BufferedReader bufferedReader = new BufferedReader(inputStreamReader)) {
             return bufferedReader.readLine();
         } catch (IOException ex) {
-            LOGGER.error("Impossible to open URL {}", CHECK_IP_URL, ex);
+            LOGGER.error("Impossible to get IP from URL {}", CHECK_IP_URL, ex);
             return "unknown";
         }
     }
