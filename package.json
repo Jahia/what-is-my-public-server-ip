@@ -36,6 +36,7 @@
   "resolutions": {
     "js-yaml": "^4.1.1",
     "normalize-package-data": "^7.0.0",
+    "@babel/plugin-transform-modules-systemjs": "^7.29.4",
     "serialize-javascript": "^7.0.5"
   },
   "devDependencies": {
