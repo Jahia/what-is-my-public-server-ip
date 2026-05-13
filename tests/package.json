@@ -72,6 +72,7 @@
   "resolutions": {
     "axios": "^1.16.0",
     "ip-address": "^10.1.1",
-    "serialize-javascript": "^7.0.5"
+    "serialize-javascript": "^7.0.5",
+    "systeminformation": "^5.31.6"
   }
 }
