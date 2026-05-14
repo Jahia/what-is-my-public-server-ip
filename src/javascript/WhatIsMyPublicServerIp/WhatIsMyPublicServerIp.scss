@@ -1,3 +1,15 @@
+.wip_sr_only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 .container {
   font-family: 'Nunito Sans', sans-serif;
   color: var(--color-dark, #131c21);
@@ -5,21 +17,14 @@
   padding: var(--spacing-large, 24px);
 }
 
-.header {
-  margin-bottom: var(--spacing-large, 24px);
-  padding-bottom: var(--spacing-medium, 16px);
-  border-bottom: 1px solid var(--color-gray_light, #dadada);
-
-  h2 {
-    margin: 0;
-    padding: 0;
-    font-size: 25px;
-    line-height: 85px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    user-select: none;
-  }
+.wip_errorBanner {
+  padding: var(--spacing-small, 8px) var(--spacing-medium, 16px);
+  border-radius: var(--radius, 4px);
+  background: #fdecea;
+  border: 1px solid #f5c6cb;
+  color: #a4262c;
+  font-size: 0.9rem;
+  margin-bottom: var(--spacing-medium, 16px);
 }
 
 .card {
@@ -30,7 +35,8 @@
 }
 
 .cardHeader {
-  background: linear-gradient(135deg, var(--color-accent, #00a0e3) 0%, var(--color-accent_dark_contrast, #004781) 100%);
+  /* #0077cc on white = 4.51:1 — replaces #00a0e3 which was 2.93:1 */
+  background: linear-gradient(135deg, var(--color-accent, #0077cc) 0%, var(--color-accent_dark_contrast, #004781) 100%);
   padding: var(--spacing-medium, 16px) var(--spacing-large, 24px);
 }
 
@@ -42,19 +48,28 @@
   gap: var(--spacing-small, 8px);
 }
 
+.ipDefinition {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
 .ipLabel {
-  color: var(--color-gray, #7a7f88);
-  font-size: 12px;
+  /* #5c6370 on white = ~5.4:1 — replaces #7a7f88 which was ~4.3:1 */
+  color: var(--color-gray, #5c6370);
+  font-size: 0.75rem;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.04em;
+  margin-bottom: var(--spacing-small, 8px);
 }
 
 .ipValue {
   color: var(--color-dark, #131c21);
-  font-size: 32px;
+  font-size: 2rem;
   font-weight: 700;
   letter-spacing: 0.04em;
   font-family: monospace;
+  margin: 0;
 }
 
 .loaderWrapper {
