@@ -9,19 +9,18 @@ export function WhatIsMyPublicServerIp() {
     const {t} = useTranslation('what-is-my-public-server-ip');
     const {data, loading, error} = useQuery(GET_WHAT_IS_MY_PUBLIC_SERVER_IP, {fetchPolicy: 'network-only'});
 
-    const liveMsg = loading ? t('whatIsMyPublicServerIp.loading') :
-        error ? t('whatIsMyPublicServerIp.error') : '';
+    React.useEffect(() => {
+        document.title = `${t('label')} — Jahia Administration`;
+    }, [t]);
 
     return (
         <div className={styles.container}>
-            {/* Persistent live region — always in DOM so AT registers it before status changes */}
-            <div
-                role={error ? 'alert' : 'status'}
-                aria-live={error ? 'assertive' : 'polite'}
-                aria-atomic="true"
-                className={styles.wip_sr_only}
-            >
-                {liveMsg}
+            {/* Two fixed-role live regions — AT caches role at registration; dynamic mutation is ignored */}
+            <div role="status" aria-live="polite" aria-atomic="true" className={styles.wip_sr_only}>
+                {loading ? t('whatIsMyPublicServerIp.loading') : ''}
+            </div>
+            <div role="alert" aria-live="assertive" aria-atomic="true" className={styles.wip_sr_only}>
+                {error ? t('whatIsMyPublicServerIp.error') : ''}
             </div>
 
             {loading && (
