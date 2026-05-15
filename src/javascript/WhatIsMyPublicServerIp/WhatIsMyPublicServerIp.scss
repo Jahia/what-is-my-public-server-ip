@@ -55,16 +55,11 @@
 }
 
 .ipLabel {
-  /* #5c6370 on white = ~5.4:1 — replaces #7a7f88 which was ~4.3:1 */
-  color: var(--color-gray, #5c6370);
+  color: #595959; /* 7.0:1 on white — SC 1.4.3 AA+AAA; hardcoded, not theme-dependent */
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.04em;
   margin-bottom: var(--spacing-small, 8px);
-
-  @media (prefers-contrast: more) {
-    color: #3a3f45; /* guaranteed ≥7:1 on white when theme token resolves lighter */
-  }
 }
 
 .ipValue {
