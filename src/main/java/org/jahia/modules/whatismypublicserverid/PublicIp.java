@@ -5,7 +5,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Serializable;
+import java.net.HttpURLConnection;
+import java.net.InetAddress;
 import java.net.URI;
+import java.net.URL;
+import java.net.UnknownHostException;
 import java.nio.charset.StandardCharsets;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,16 +22,70 @@ public final class PublicIp implements Serializable {
 
     private static final long serialVersionUID = 1;
     private static final Logger LOGGER = LoggerFactory.getLogger(PublicIp.class);
-    private static final String CHECK_IP_URL = "http://checkip.amazonaws.com";
+    private static final String CHECK_IP_URL = "https://checkip.amazonaws.com";
+    private static final int CONNECT_TIMEOUT_MS = 5000;
+    private static final int READ_TIMEOUT_MS = 5000;
+    private static final int MAX_RESPONSE_LENGTH = 64;
+    private static final String UNKNOWN = "unknown";
 
     public String get() {
-        try (InputStream inputStream = URI.create(CHECK_IP_URL).toURL().openStream();
-             InputStreamReader inputStreamReader = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
-             BufferedReader bufferedReader = new BufferedReader(inputStreamReader)) {
-            return bufferedReader.readLine();
+        HttpURLConnection connection = null;
+        try {
+            final URL url = URI.create(CHECK_IP_URL).toURL();
+            final String protocol = url.getProtocol();
+            if (!"https".equalsIgnoreCase(protocol) && !"http".equalsIgnoreCase(protocol)) {
+                LOGGER.error("Refusing to fetch public IP from non-http(s) URL");
+                return UNKNOWN;
+            }
+            connection = (HttpURLConnection) url.openConnection();
+            connection.setConnectTimeout(CONNECT_TIMEOUT_MS);
+            connection.setReadTimeout(READ_TIMEOUT_MS);
+            connection.setInstanceFollowRedirects(false);
+            connection.setRequestMethod("GET");
+            try (InputStream inputStream = connection.getInputStream();
+                 InputStreamReader inputStreamReader = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
+                 BufferedReader bufferedReader = new BufferedReader(inputStreamReader)) {
+                final char[] buffer = new char[MAX_RESPONSE_LENGTH];
+                final int read = bufferedReader.read(buffer, 0, MAX_RESPONSE_LENGTH);
+                if (read <= 0) {
+                    return UNKNOWN;
+                }
+                final String candidate = new String(buffer, 0, read).trim();
+                if (!isValidIpLiteral(candidate)) {
+                    LOGGER.warn("Upstream IP service returned an unexpected payload");
+                    return UNKNOWN;
+                }
+                return candidate;
+            }
         } catch (IOException ex) {
             LOGGER.error("Impossible to get IP from URL {}", CHECK_IP_URL, ex);
-            return "unknown";
+            return UNKNOWN;
+        } finally {
+            if (connection != null) {
+                connection.disconnect();
+            }
+        }
+    }
+
+    private static boolean isValidIpLiteral(String candidate) {
+        if (candidate == null || candidate.isEmpty() || candidate.length() > 45) {
+            return false;
+        }
+        for (int i = 0; i < candidate.length(); i++) {
+            final char c = candidate.charAt(i);
+            final boolean allowed = (c >= '0' && c <= '9')
+                    || (c >= 'a' && c <= 'f')
+                    || (c >= 'A' && c <= 'F')
+                    || c == '.' || c == ':';
+            if (!allowed) {
+                return false;
+            }
+        }
+        try {
+            InetAddress.getByName(candidate);
+            return true;
+        } catch (UnknownHostException e) {
+            return false;
         }
     }
 }
