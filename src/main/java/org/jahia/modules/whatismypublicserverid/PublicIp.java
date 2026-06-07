@@ -27,8 +27,26 @@ public final class PublicIp implements Serializable {
     private static final int READ_TIMEOUT_MS = 5000;
     private static final int MAX_RESPONSE_LENGTH = 64;
     private static final String UNKNOWN = "unknown";
+    private static final long CACHE_TTL_MS = 60_000L;
+
+    /** Cached IP value; {@code null} means the cache is empty. */
+    private static volatile String cachedIp = null;
+    /** Timestamp (ms since epoch) at which {@link #cachedIp} was stored. */
+    private static volatile long cacheTimestamp = 0L;
 
     public String get() {
+        final long now = System.currentTimeMillis();
+        final String cached = cachedIp;
+        if (cached != null && (now - cacheTimestamp) < CACHE_TTL_MS) {
+            return cached;
+        }
+        final String fresh = fetchFromUpstream();
+        cachedIp = fresh;
+        cacheTimestamp = now;
+        return fresh;
+    }
+
+    private String fetchFromUpstream() {
         HttpURLConnection connection = null;
         try {
             final URL url = URI.create(CHECK_IP_URL).toURL();
