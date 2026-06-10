@@ -8,7 +8,7 @@
     </parent>
     <groupId>org.jahia.community</groupId>
     <artifactId>what-is-my-public-server-ip</artifactId>
-    <version>2.0.4-SNAPSHOT</version>
+    <version>2.0.5-SNAPSHOT</version>
     <packaging>bundle</packaging>
     <name>What is my public server IP</name>
     <description>This is a custom module to display the public IP used by the server to access Internet</description>
