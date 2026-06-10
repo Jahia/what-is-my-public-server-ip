@@ -19,7 +19,7 @@ public class WhatIsMyPublicServerIpQueryExtension {
     @GraphQLField
     @GraphQLName("whatIsMyPublicServerIp")
     @GraphQLDescription("Get the public IP used by the server to access Internet")
-    @GraphQLRequiresPermission("admin")
+    @GraphQLRequiresPermission("publicServerIpAdmin")
     public static String getPublicIp() {
         return new PublicIp().get();
     }
