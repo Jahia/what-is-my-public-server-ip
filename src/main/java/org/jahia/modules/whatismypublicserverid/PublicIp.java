@@ -41,9 +41,14 @@ public final class PublicIp implements Serializable {
             return cached;
         }
         final String fresh = fetchFromUpstream();
-        cachedIp = fresh;
-        cacheTimestamp = now;
+        storeInCache(fresh, now);
         return fresh;
+    }
+
+    /** Updates the process-wide cache. Static so the shared-state mutation is explicit (Sonar S2696). */
+    private static void storeInCache(String ip, long timestamp) {
+        cachedIp = ip;
+        cacheTimestamp = timestamp;
     }
 
     private String fetchFromUpstream() {
