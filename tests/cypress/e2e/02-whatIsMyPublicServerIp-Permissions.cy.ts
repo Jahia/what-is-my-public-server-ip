@@ -62,7 +62,7 @@ describe('What Is My Public Server IP — permission enforcement', () => {
         it('allows the gated query for a user granted only the module permission', () => {
             queryAs(ALLOWED_USER).then((result: never) => {
                 expect(errorsOf(result), 'should have no errors').to.have.length(0);
-                const ip = (result as {data: {whatIsMyPublicServerIp: string}}).data.whatIsMyPublicServerIp;
+                const ip = (result as {data: {whatIsMyPublicServerIp: {ip: string}}}).data.whatIsMyPublicServerIp.ip;
                 expect(ip, 'public IP').to.be.a('string');
                 expect(ip).to.match(ipPattern);
             });

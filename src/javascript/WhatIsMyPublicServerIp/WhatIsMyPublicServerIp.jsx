@@ -46,7 +46,7 @@ export function WhatIsMyPublicServerIp() {
                         <dl className={styles.ipDefinition}>
                             <dt className={styles.ipLabel}>{t('whatIsMyPublicServerIp.title')}</dt>
                             <dd className={styles.ipValue}>
-                                {data && data.whatIsMyPublicServerIp}
+                                {data?.whatIsMyPublicServerIp?.ip}
                             </dd>
                         </dl>
                     </div>
