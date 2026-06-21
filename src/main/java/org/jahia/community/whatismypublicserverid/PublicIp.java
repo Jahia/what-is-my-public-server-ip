@@ -1,4 +1,4 @@
-package org.jahia.modules.whatismypublicserverid;
+package org.jahia.community.whatismypublicserverid;
 
 import java.io.BufferedReader;
 import java.io.IOException;

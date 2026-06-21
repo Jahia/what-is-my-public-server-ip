@@ -1,4 +1,4 @@
-package org.jahia.modules.whatismypublicserverid;
+package org.jahia.community.whatismypublicserverid;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
