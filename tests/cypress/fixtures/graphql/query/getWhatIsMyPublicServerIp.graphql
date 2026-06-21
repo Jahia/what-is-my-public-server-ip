@@ -1,3 +1,5 @@
 query GetWhatIsMyPublicServerIp {
-    whatIsMyPublicServerIp
+    whatIsMyPublicServerIp {
+        ip
+    }
 }

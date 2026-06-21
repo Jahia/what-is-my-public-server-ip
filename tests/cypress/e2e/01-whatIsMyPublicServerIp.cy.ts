@@ -29,7 +29,7 @@ describe('What Is My Public Server IP', () => {
     it('fetches public IP via GraphQL API', () => {
         cy.login();
         cy.apollo({query: getWhatIsMyPublicServerIp})
-            .its('data.whatIsMyPublicServerIp')
+            .its('data.whatIsMyPublicServerIp.ip')
             .should('be.a', 'string')
             .and('match', ipPattern);
     });
@@ -37,7 +37,7 @@ describe('What Is My Public Server IP', () => {
     it('IP displayed in UI matches the GraphQL API response', () => {
         cy.login();
         cy.apollo({query: getWhatIsMyPublicServerIp})
-            .its('data.whatIsMyPublicServerIp')
+            .its('data.whatIsMyPublicServerIp.ip')
             .then((ip: string) => {
                 cy.visit(adminPath);
                 cy.get('[class*="ipValue"]').should('contain.text', ip);
