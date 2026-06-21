@@ -1,10 +1,10 @@
-package org.jahia.modules.whatismypublicserverid.graphql;
+package org.jahia.community.whatismypublicserverid.graphql;
 
 import graphql.annotations.annotationTypes.GraphQLDescription;
 import graphql.annotations.annotationTypes.GraphQLField;
 import graphql.annotations.annotationTypes.GraphQLName;
 import org.jahia.modules.graphql.provider.dxm.security.GraphQLRequiresPermission;
-import org.jahia.modules.whatismypublicserverid.PublicIp;
+import org.jahia.community.whatismypublicserverid.PublicIp;
 
 @GraphQLName("WhatIsMyPublicServerIpQuery")
 @GraphQLDescription("What is my public server IP queries")

@@ -135,7 +135,7 @@
                 <extensions>true</extensions>
                 <configuration>
                     <instructions>
-                        <_dsannotations>org.jahia.modules.whatismypublicserverid.*</_dsannotations>
+                        <_dsannotations>org.jahia.community.whatismypublicserverid.*</_dsannotations>
                     </instructions>
                 </configuration>
             </plugin>

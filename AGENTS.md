@@ -5,7 +5,7 @@ Jahia OSGi module that displays the public IP address of the Jahia server (as se
 ## Key Facts
 
 - **artifactId**: `what-is-my-public-server-ip` | **version**: `2.0.3-SNAPSHOT`
-- **Java package**: `org.jahia.modules.whatismypublicserverid`
+- **Java package**: `org.jahia.community.whatismypublicserverid`
 - **jahia-depends**: `serverSettings,graphql-dxm-provider,default`
 - Query-only module — no mutation, no persistence
 

@@ -1,4 +1,4 @@
-package org.jahia.modules.whatismypublicserverid.graphql;
+package org.jahia.community.whatismypublicserverid.graphql;
 
 import graphql.annotations.annotationTypes.GraphQLDescription;
 import graphql.annotations.annotationTypes.GraphQLField;
