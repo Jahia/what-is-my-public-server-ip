@@ -15,8 +15,13 @@ describe('What Is My Public Server IP — network-only fetch policy', () => {
 
     it('re-queries GraphQL on every mount (fetchPolicy: network-only)', () => {
         let hits = 0
+        // Jahia's admin Apollo client uses a batch HTTP link, so req.body may be an ARRAY
+        // of operations (`[{ query, ... }]`) rather than a single `{ query }` object — and
+        // could arrive as a raw string. Stringify whatever shape it is and match on the
+        // operation name so the count is robust to the transport's batching.
         cy.intercept('POST', '**/graphql', (req) => {
-            if (typeof req.body?.query === 'string' && req.body.query.includes('whatIsMyPublicServerIp')) {
+            const raw = typeof req.body === 'string' ? req.body : JSON.stringify(req.body ?? {})
+            if (raw.includes('whatIsMyPublicServerIp')) {
                 hits += 1
             }
         }).as('graphql')
