@@ -14,6 +14,9 @@ describe('What Is My Public Server IP', () => {
     it('check page loads and renders the IP card', () => {
         cy.login()
         cy.visit(adminPath)
+
+        // Prove the card actually rendered — not just that cy.visit got a 2xx/3xx.
+        cy.get('[class*="ipValue"]').should('exist')
     })
 
     it('displays a valid public IP address', () => {
