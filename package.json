@@ -36,7 +36,7 @@
   "resolutions": {
     "@babel/core": "^7.29.6",
     "@babel/plugin-transform-modules-systemjs": "^7.29.4",
-    "js-yaml": "^4.3.0",
+    "js-yaml": "^4.3.2",
     "normalize-package-data": "^7.0.0",
     "serialize-javascript": "^7.0.5",
     "tar": "^7.5.16"
