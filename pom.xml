@@ -29,12 +29,28 @@
         <jahia-deploy-on-site>system</jahia-deploy-on-site>
         <jahia-depends>serverSettings,graphql-dxm-provider,default</jahia-depends>
     </properties>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.junit</groupId>
+                <artifactId>junit-bom</artifactId>
+                <version>5.14.4</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
     <dependencies>
         <!-- JUnit 5 for unit tests -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
-            <version>5.14.4</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- keeps the launcher aligned with junit-jupiter (surefire otherwise brings an older one -> 0 tests run) -->
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-launcher</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
