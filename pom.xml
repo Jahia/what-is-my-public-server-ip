@@ -29,12 +29,28 @@
         <jahia-deploy-on-site>system</jahia-deploy-on-site>
         <jahia-depends>serverSettings,graphql-dxm-provider,default</jahia-depends>
     </properties>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.junit</groupId>
+                <artifactId>junit-bom</artifactId>
+                <version>5.14.4</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
     <dependencies>
         <!-- JUnit 5 for unit tests -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
-            <version>5.10.3</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- keeps the launcher aligned with junit-jupiter (surefire otherwise brings an older one -> 0 tests run) -->
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-launcher</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -97,7 +113,7 @@
             <plugin>
                 <groupId>com.github.eirslett</groupId>
                 <artifactId>frontend-maven-plugin</artifactId>
-                <version>1.15.0</version>
+                <version>1.15.4</version>
                 <executions>
                     <execution>
                         <id>npm install node and yarn</id>
@@ -106,8 +122,8 @@
                             <goal>install-node-and-yarn</goal>
                         </goals>
                         <configuration>
-                            <nodeVersion>v22.6.0</nodeVersion>
-                            <yarnVersion>v1.22.21</yarnVersion>
+                            <nodeVersion>v22.20.0</nodeVersion>
+                            <yarnVersion>v1.22.22</yarnVersion>
                         </configuration>
                     </execution>
                     <execution>
