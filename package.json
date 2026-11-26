@@ -53,7 +53,7 @@
   "devDependencies": {
     "@babel/core": "^7.29.13",
     "@babel/plugin-syntax-dynamic-import": "^7.8.3",
-    "@babel/preset-env": "^7.29.7",
+    "@babel/preset-env": "^7.29.14",
     "@babel/preset-react": "^7.29.7",
     "@cyclonedx/webpack-plugin": "^5.3.3",
     "@jahia/eslint-config": "2.2.0",
@@ -67,11 +67,11 @@
     "eslint-plugin-react-hooks": "^7.1.1",
     "file-loader": "^6.2.0",
     "sass": "^1.108.1",
-    "sass-loader": "^17.1.0",
+    "sass-loader": "^17.1.1",
     "style-loader": "^4.0.0",
     "sync-pom-version-to-package": "^1.6.1",
-    "webpack": "^5.112.2",
-    "webpack-bundle-analyzer": "^5.4.2",
+    "webpack": "^5.113.0",
+    "webpack-bundle-analyzer": "^5.4.3",
     "webpack-cli": "^7.3.1"
   }
 }
